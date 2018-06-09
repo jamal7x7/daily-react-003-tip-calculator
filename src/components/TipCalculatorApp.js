@@ -40,16 +40,16 @@ const Calculator = (props) => (
       <div className="tipLabel">Tip</div>
       <div className="label">total</div>
       <div className="tip">
-      {props.billAmount * props.tipPercent /100 }
+        {'$' + props.billAmount * props.tipPercent /100 }
       </div>
       <div className="perPersonLabel">per person</div>
       <div className="perPerson">
-        {props.tip / props.peopleNumber}
+        {props.peopleNumber > 0 ? '$' + props.billAmount * props.tipPercent / (100 * props.peopleNumber) : 0}
       </div>
     </div>
 
-    <form className="form" onChange={props.calculate}>
-      <div className="label">Bill</div>
+    <form className="form" >
+      <div className="label">Bill ($)</div>
       <input 
         type="number" 
         name="bill" 
@@ -83,9 +83,9 @@ const Calculator = (props) => (
 class TipCalculatorApp extends Component {
 
   state = {
-    tip: 15,
+    tip: 0,
     perPerson: 0,
-    billAmount: 100,
+    billAmount: 0,
     tipPercent: 15,
     peopleNumber: 1
 
@@ -95,7 +95,6 @@ class TipCalculatorApp extends Component {
   billHandler = (e) => {
     e.preventDefault()
     const b = e.target.value
-    this.calculate()
     this.setState( () => ({
       billAmount: b
     }))
@@ -103,7 +102,6 @@ class TipCalculatorApp extends Component {
   tipHandler = (e) => {
     e.preventDefault()
     const t = e.target.value
-    this.calculate()
     this.setState( () => ({
       tipPercent: t
     }))
@@ -111,19 +109,11 @@ class TipCalculatorApp extends Component {
   peopleHandler = (e) => {
     e.preventDefault()
     const p = e.target.value
-    this.calculate()
     this.setState( () => ({
       peopleNumber: p
     }))
   }
 
-  calculate = () => {
-    this.setState( (prevState) => ({
-      tip: this.state.billAmount * this.state.tipPercent /100,
-      perPerson: this.state.tip/this.state.peopleNumber
-    }))
-    
-  }
 
   render() {
     return (
