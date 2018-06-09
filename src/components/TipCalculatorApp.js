@@ -40,11 +40,11 @@ const Calculator = (props) => (
       <div className="tipLabel">Tip</div>
       <div className="label">total</div>
       <div className="tip">
-        {'$' + props.billAmount * props.tipPercent /100 }
+        {'$' + (props.billAmount * props.tipPercent /100).toFixed(2) }
       </div>
       <div className="perPersonLabel">per person</div>
       <div className="perPerson">
-        {props.peopleNumber > 0 ? '$' + props.billAmount * props.tipPercent / (100 * props.peopleNumber) : 0}
+        {props.peopleNumber > 0 ? '$' + (props.billAmount * props.tipPercent / (100 * props.peopleNumber)).toFixed(2) : 0}
       </div>
     </div>
 
@@ -55,6 +55,8 @@ const Calculator = (props) => (
         name="bill" 
         defaultValue={props.billAmount} 
         onChange={props.billHandler}
+        min="0" 
+        step="1"
       />
       <div className="label">Tip %</div>
       <input 
@@ -62,6 +64,8 @@ const Calculator = (props) => (
         name="tip" 
         defaultValue={props.tipPercent} 
         onChange={props.tipHandler}
+        min="0" 
+        step="1"
       />
       <div className="label">Poeple</div>
       <input 
@@ -69,6 +73,8 @@ const Calculator = (props) => (
         name="people" 
         defaultValue={props.peopleNumber} 
         onChange={props.peopleHandler}
+        min="1" 
+        step="1"
       />
     </form>
     
