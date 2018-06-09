@@ -11,20 +11,24 @@ const Header = () => (
 
 const SVG = (props) => ( 
   <div className='svg'> 
-    <svg width="352" height="660" viewBox="0 0 352 660" >
+    <svg width="352" height="660" viewBox="0 0 352 660" xmlns="http://www.w3.org/2000/svg">
       <defs>
           <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="linearGradient-1">
               <stop stopColor="#DD8EDA" offset="0%" />
               <stop stopColor="#42A3F9" offset="100%" />
           </linearGradient>
       </defs>
-      <g id="Page-1" fill="none" fillRule="evenodd">
-          <g id="Desktop-HD-Copy" transform="translate(-544 -219)" fill="url(#linearGradient-1)">
-              <path d="M544,457.004454 L544,219 L896,219 L896,457.004454 C881.042868,457.271138 869,469.479188 869,484.5 C869,499.520812 881.042868,511.728862 896,511.995546 L896,879 L544,879 L544,511.995546 C544.166311,511.998511 544.332981,512 544.5,512 C559.687831,512 572,499.687831 572,484.5 C572,469.312169 559.687831,457 544.5,457 C544.332981,457 544.166311,457.001489 544,457.004454 Z"
-              id="Combined-Shape-Copy" />
+      <g id="dot" fill="none" fillRule="evenodd">
+          <g id="tic" transform="translate(-544 -219)">
+              <g id="cal" transform="translate(544 219)">
+                  <path d="M0,238.004454 L0,0 L352,0 L352,238.004454 C337.042868,238.271138 325,250.479188 325,265.5 C325,280.520812 337.042868,292.728862 352,292.995546 L352,660 L0,660 L0,292.995546 C0.166310543,292.998511 0.332981393,293 0.5,293 C15.6878306,293 28,280.687831 28,265.5 C28,250.312169 15.6878306,238 0.5,238 C0.332981393,238 0.166310543,238.001489 -4.33119374e-11,238.004454 Z"
+                  id="calc" fill="url(#linearGradient-1)" />
+                  <path d="M34.3057837,266.723897 L317.761123,266.723897" id="Path-2" stroke="#062659"
+                  strokeDasharray="12,9" />
+              </g>
           </g>
       </g>
-    </svg>      
+    </svg>
   </div>
 )
 
