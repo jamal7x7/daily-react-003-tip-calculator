@@ -83,7 +83,7 @@ const Calculator = (props) => (
 class TipCalculatorApp extends Component {
 
   state = {
-    tip: 0,
+    
     perPerson: 0,
     billAmount: 0,
     tipPercent: 15,
@@ -127,8 +127,6 @@ class TipCalculatorApp extends Component {
          billAmount={this.state.billAmount}
          tipPercent={this.state.tipPercent}
          peopleNumber={this.state.peopleNumber}
-         tip={this.state.tip}
-         perPerson={this.state.perPerson}
          />
       </div>
     );
