@@ -1,4 +1,4 @@
-daily-react-003-tip-calculator
+##daily-react-003-tip-calculator
 
 Challenge: create a tip calculator app.
 
