@@ -35,20 +35,39 @@ const Calculator = (props) => (
     <div className="result">
       <div className="tipLabel">Tip</div>
       <div className="label">total</div>
-      <div className="tip">$15.00</div>
+      <div className="tip">
+      {props.billAmount * props.tipPercent /100 }
+      </div>
       <div className="perPersonLabel">per person</div>
-      <div className="perPerson">$7.50</div>
+      <div className="perPerson">
+        {props.tip / props.peopleNumber}
+      </div>
     </div>
 
-    <form>
+    <form className="form" onChange={props.calculate}>
       <div className="label">Bill</div>
-      <input type="number"/>
+      <input 
+        type="number" 
+        name="bill" 
+        defaultValue={props.billAmount} 
+        onChange={props.billHandler}
+      />
+      <div className="label">Tip %</div>
+      <input 
+        type="number" 
+        name="tip" 
+        defaultValue={props.tipPercent} 
+        onChange={props.tipHandler}
+      />
+      <div className="label">Poeple</div>
+      <input 
+        type="number" 
+        name="people" 
+        defaultValue={props.peopleNumber} 
+        onChange={props.peopleHandler}
+      />
     </form>
-
-
     
-
-      
   </div>
 )
 
@@ -58,12 +77,65 @@ const Calculator = (props) => (
 
 
 class TipCalculatorApp extends Component {
+
+  state = {
+    tip: 15,
+    perPerson: 0,
+    billAmount: 100,
+    tipPercent: 15,
+    peopleNumber: 1
+
+  }
+
+
+  billHandler = (e) => {
+    e.preventDefault()
+    const b = e.target.value
+    this.calculate()
+    this.setState( () => ({
+      billAmount: b
+    }))
+  }
+  tipHandler = (e) => {
+    e.preventDefault()
+    const t = e.target.value
+    this.calculate()
+    this.setState( () => ({
+      tipPercent: t
+    }))
+  }
+  peopleHandler = (e) => {
+    e.preventDefault()
+    const p = e.target.value
+    this.calculate()
+    this.setState( () => ({
+      peopleNumber: p
+    }))
+  }
+
+  calculate = () => {
+    this.setState( (prevState) => ({
+      tip: this.state.billAmount * this.state.tipPercent /100,
+      perPerson: this.state.tip/this.state.peopleNumber
+    }))
+    
+  }
+
   render() {
     return (
       <div className="App">
          <Header />
          <SVG /> 
-         <Calculator />
+         <Calculator 
+         billHandler={this.billHandler}
+         tipHandler={this.tipHandler}
+         peopleHandler={this.peopleHandler}
+         billAmount={this.state.billAmount}
+         tipPercent={this.state.tipPercent}
+         peopleNumber={this.state.peopleNumber}
+         tip={this.state.tip}
+         perPerson={this.state.perPerson}
+         />
       </div>
     );
 
